@@ -2,7 +2,6 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { AppLayout } from '../components/app-layout/app-layout';
 import { Paths } from './paths';
 import { AboutUsPage } from '../pages/about-us/about-us-page';
-import { AuthPage } from '../pages/auth/auth-page';
 import { ProfilePage } from '../pages/profile/profile-page';
 import { NotFoundPage } from '../pages/not-found/not-found-page';
 import { WidgetLayout } from '../components/widget-layout/widget-layout';
@@ -19,6 +18,8 @@ import TopicsPage from '../pages/topics/topics-page';
 import TopicPage from '../pages/topic/topic-page';
 import { ErrorPage } from '../pages/error/error-page';
 import { CoursesLayout } from '../components/courses-layout/courses-layout';
+import { LoginPage } from '../pages/auth/login/login-page';
+import { RegisterPage } from '../pages/auth/register/register-page';
 
 export const router = createBrowserRouter([
   {
@@ -80,8 +81,13 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: Paths.AUTH,
-    element: <AuthPage />,
+    path: Paths.LOGIN,
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: Paths.REGISTER,
+    element: <RegisterPage />,
     errorElement: <ErrorPage />,
   },
   {
