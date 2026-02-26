@@ -1,10 +1,10 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { AppLayout } from '../components/app-layout/app-layout';
 import { Paths } from './paths';
+import { ErrorPage } from '../pages/error/error-page';
+import { AppLayout } from '../layouts/app-layout/app-layout';
 import { AboutUsPage } from '../pages/about-us/about-us-page';
-import { ProfilePage } from '../pages/profile/profile-page';
-import { NotFoundPage } from '../pages/not-found/not-found-page';
-import { WidgetLayout } from '../components/widget-layout/widget-layout';
+import { CoursesLayout } from '../layouts/courses-layout/courses-layout';
+import CoursesPage from '../pages/courses/courses-page';
 import {
   allCoursesLoader,
   courseInfoLoader,
@@ -12,14 +12,14 @@ import {
   topicLoader,
   topicsLoader,
 } from '../api/loaders';
-import CoursesPage from '../pages/courses/courses-page';
 import CourseInfoPage from '../pages/course-info/course-info-page';
 import TopicsPage from '../pages/topics/topics-page';
 import TopicPage from '../pages/topic/topic-page';
-import { ErrorPage } from '../pages/error/error-page';
-import { CoursesLayout } from '../components/courses-layout/courses-layout';
+import { WidgetLayout } from '../layouts/widget-layout/widget-layout';
+import { ProfilePage } from '../pages/profile/profile-page';
 import { LoginPage } from '../pages/auth/login/login-page';
 import { RegisterPage } from '../pages/auth/register/register-page';
+import { NotFoundPage } from '../pages/not-found/not-found-page';
 
 export const router = createBrowserRouter([
   {
