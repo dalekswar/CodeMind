@@ -1,9 +1,9 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './App.tsx';
-import { ErrorBoundary } from './error-boundary.tsx';
+import { App } from './app/App.tsx';
 
-import './styles/main.css';
+import './app/styles/main.css';
+import { ErrorBoundary } from './components/error-boundary/error-boundary.tsx';
 
 const root = document.querySelector('#root');
 
