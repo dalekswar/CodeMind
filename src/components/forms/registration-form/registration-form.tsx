@@ -7,21 +7,21 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 const registrationSchema = z
   .object({
-    username: z
+    email: z.string().email('Invalid email format'),
+    login: z
       .string()
-      .regex(/[a-zA-Z]+ [a-zA-Z]+/, "Full name must be in 'Firstname Lastname' format"),
+      .min(5, 'Login must be at least 5 characters')
+      .max(30, 'Login must be at most 30 characters')
+      .regex(/^[A-Za-z0-9_-]+$/, 'Login can contain letters, numbers, _ and - only'),
     password: z
       .string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(30, 'Password must be at most 30 characters')
       .regex(
-        /^(?!.*[А-Яа-яЁё\s])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$&_+.-]{8,}$/,
-        'Password must be at least 8 characters, contain uppercase letter and number'
+        /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$&_+.-]+$/,
+        'Password must contain at least one uppercase letter and one number, no spaces or Cyrillic'
       ),
-    passwordConfirm: z
-      .string()
-      .regex(
-        /^(?!.*[А-Яа-яЁё\s])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$&_+.-]{8,}$/,
-        'Password must be at least 8 characters, contain uppercase letter and number'
-      ),
+    passwordConfirm: z.string(),
   })
   .refine(data => data.password === data.passwordConfirm, {
     message: 'Passwords must match',
@@ -43,14 +43,11 @@ export const RegistrationForm: FC = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow label="Full Name" error={errors.username}>
-        <input
-          type="text"
-          id="username"
-          autoComplete="username"
-          {...register('username')}
-          required
-        />
+      <FormRow label="Email" error={errors.email}>
+        <input type="email" id="email" required {...register('email')} />
+      </FormRow>
+      <FormRow label="Login" error={errors.login}>
+        <input type="text" id="login" autoComplete="login" {...register('login')} required />
       </FormRow>
       <FormRow label="Password" error={errors.password}>
         <input
