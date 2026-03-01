@@ -1,5 +1,3 @@
-import type { FC } from 'react';
-
-export const TopicsPage: FC = () => {
+export const TopicsPage = () => {
   return <section className="topics">Topics Page</section>;
 };

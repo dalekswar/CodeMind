@@ -8,7 +8,7 @@ type Props = {
   children: ReactElement<{ id?: string }>;
 };
 
-export const FormRow: FC<Props> = ({ label, error, children }) => {
+export const FormRow = ({ label, error, children }: Props) => {
   return (
     <div className={styles.row}>
       {label && (

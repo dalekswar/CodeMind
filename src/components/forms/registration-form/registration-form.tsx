@@ -11,7 +11,7 @@ import { registerUser } from '../../../redux/reducers';
 import styles from './registration-form.module.css';
 import { singleToasts } from '../../../utils/toast.util';
 
-export const RegistrationForm: FC = () => {
+export const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
