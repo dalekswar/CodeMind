@@ -37,6 +37,7 @@ export const RegistrationForm: FC = () => {
     formState: { errors },
   } = useForm<RegistrationFormValues>({ resolver: zodResolver(registrationSchema) });
   console.log(errors);
+
   function onSubmit(data: RegistrationFormValues) {
     console.log('submit', data);
   }
@@ -68,7 +69,7 @@ export const RegistrationForm: FC = () => {
         />
       </FormRow>
       <FormRow>
-        <button type="submit">Get Started</button>
+        <button type="submit">Sign Up Now</button>
       </FormRow>
     </Form>
   );
