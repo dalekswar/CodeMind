@@ -6,10 +6,10 @@ import { registrationSchema, type RegistrationFormValues } from './registration.
 import { useMutation } from '@tanstack/react-query';
 import { signUpUser } from '../../../api';
 import type { ApiError, RegistrationSuccessResponse, SignUpDto } from '../../../types';
-import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../redux/reducers';
 import styles from './registration-form.module.css';
+import { singleToasts } from '../../../utils/toast.util';
 
 export const RegistrationForm: FC = () => {
   const {
@@ -24,9 +24,9 @@ export const RegistrationForm: FC = () => {
     onSuccess: data => {
       console.log(data);
       dispatch(registerUser({ email: data.email, login: data.login }));
-      toast.success(`Регистрация прошла успешно!`);
+      singleToasts(`Регистрация прошла успешно!`, 'success');
     },
-    onError: err => toast.error(`${err.message || err}`),
+    onError: err => singleToasts(`${err.message || err}`, 'error'),
   });
 
   function onSubmit(data: RegistrationFormValues) {
