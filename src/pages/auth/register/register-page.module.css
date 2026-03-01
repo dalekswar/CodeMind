@@ -13,13 +13,15 @@
 .register__card {
   background: var(--color-card-bg);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--color-line);
   width: 100%;
   max-width: 480px;
   padding: 48px;
-  border-radius: 24px;
+  border-radius: var(--radius-xl);
   position: relative;
-  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-main);
+  animation: fadeIn var(--transition-slow);
 }
 
 .register__card::before {
@@ -40,12 +42,14 @@
   font-size: 22px;
   color: var(--color-accent);
   margin-bottom: 32px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .register__title {
   font-size: 26px;
   margin: 0 0 8px 0;
-  color: #fff;
+  color: var(--color-text);
   letter-spacing: -1px;
   text-align: center;
 }
@@ -65,12 +69,23 @@
 }
 
 .register__link {
-  color: #fff;
+  color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 .register__link:hover {
   color: var(--color-accent);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

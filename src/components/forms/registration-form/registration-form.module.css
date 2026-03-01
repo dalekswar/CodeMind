@@ -10,19 +10,23 @@
   color: var(--color-text-inverse);
   border: none;
   padding: 16px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   font-size: 15px;
   font-weight: 800;
   cursor: pointer;
   margin-top: 10px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   font-family: var(--font-primary);
 }
 
 .form__submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2);
-  filter: brightness(1.1);
+  box-shadow: var(--shadow-accent);
+  background-color: var(--color-accent-hover);
+}
+
+.form__submit:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .form__submit:disabled {

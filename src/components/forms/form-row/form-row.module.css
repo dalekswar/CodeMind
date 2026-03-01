@@ -18,7 +18,7 @@
 .row__error {
   margin-top: 6px;
   font-size: 12px;
-  color: #ef4444;
+  color: var(--color-error);
   font-weight: 500;
   font-family: inherit;
 }
@@ -27,13 +27,13 @@
   width: 100%;
   background: var(--color-input-bg);
   border: 1px solid var(--color-line);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 14px;
-  color: white;
+  color: var(--color-text);
   font-size: 14px;
   font-family: var(--font-primary);
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .row input:focus {
@@ -46,4 +46,9 @@
 .row input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.row input::placeholder {
+  color: var(--color-text-dim);
+  opacity: 0.5;
 }
