@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { Header } from '../../../components/header/header';
 
-export function AppLayout() {
+export const AppLayout = () => {
   return (
     <div className="wrapper">
       <Header />
@@ -10,4 +10,4 @@ export function AppLayout() {
       </main>
     </div>
   );
-}
+};

@@ -1,4 +1,4 @@
-import type { FC, ReactElement } from 'react';
+import type { ReactElement } from 'react';
 import type { FieldError } from 'react-hook-form';
 import styles from './form-row.module.css';
 
