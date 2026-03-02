@@ -9,16 +9,19 @@ import { auth } from '../../../redux/reducers';
 import { singleToasts } from '../../../utils/toast.util';
 import { FormRow } from '../form-row';
 import { AuthForm } from '../auth-form';
+import { useState } from 'react';
 
 export const LoginForm = () => {
+  const [loginInput, setLoginInput] = useState('');
   const dispatch = useDispatch();
 
   const mutation = useMutation({
     mutationKey: ['loginUser'],
     mutationFn: loginUser,
     onSuccess: data => {
-      dispatch(auth({ login: data.login }));
-      singleToasts(`Вы успешно вошли в свой аккаунт!`, 'success');
+      console.log(data);
+      dispatch(auth({ login: loginInput }));
+      singleToasts(`${data.message}`, 'success');
     },
     onError: err => singleToasts(`${err.message || err}`, 'error'),
   });
@@ -40,7 +43,16 @@ export const LoginForm = () => {
       submitMessage="Login"
     >
       <FormRow label="Login" error={errors.login}>
-        <input type="text" id="login" placeholder="SuperUser" {...register('login')} />
+        <input
+          type="text"
+          id="login"
+          placeholder="SuperUser"
+          {...register('login')}
+          value={loginInput}
+          onChange={e => {
+            setLoginInput(e.target.value);
+          }}
+        />
       </FormRow>
 
       <FormRow label="Password" error={errors.password}>
