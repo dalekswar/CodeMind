@@ -21,6 +21,7 @@ import { NotFoundPage } from '../../pages/not-found/not-found-page';
 import { LessonPage } from '../../pages/lesson';
 import { Dashboard } from '../../pages/dashboard';
 import { ProtectedRoute } from './protected-route';
+import { PublicOnlyRoute } from './public-only-route';
 
 export const router = createBrowserRouter([
   {
@@ -112,12 +113,20 @@ export const router = createBrowserRouter([
   },
   {
     path: Paths.LOGIN,
-    element: <LoginPage />,
+    element: (
+      <PublicOnlyRoute>
+        <LoginPage />
+      </PublicOnlyRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {
     path: Paths.REGISTER,
-    element: <RegisterPage />,
+    element: (
+      <PublicOnlyRoute>
+        <RegisterPage />
+      </PublicOnlyRoute>
+    ),
     errorElement: <ErrorPage />,
   },
   {

@@ -1,19 +1,16 @@
-import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUserSelector } from '../../redux/selectors';
 import { Paths } from './paths';
-
+import type { ReactNode } from 'react';
 type Props = {
   children: ReactNode;
 };
-
-export const ProtectedRoute = ({ children }: Props) => {
+export const PublicOnlyRoute = ({ children }: Props) => {
   const { login } = useUserSelector();
-
   const isAuthorized = !!login;
 
-  if (!isAuthorized) {
-    return <Navigate to={Paths.REGISTER} replace />;
+  if (isAuthorized) {
+    return <Navigate to={Paths.ABOUT_US} replace />;
   }
 
   return children;
