@@ -1,4 +1,4 @@
-.register {
+.auth {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
   font-family: var(--font-primary);
 }
 
-.register__card {
+.auth__card {
   background: var(--color-card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -24,7 +24,7 @@
   animation: fadeIn var(--transition-slow);
 }
 
-.register__card::before {
+.auth__card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -35,7 +35,7 @@
   background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
 }
 
-.register__logo {
+.auth__logo {
   display: block;
   text-align: center;
   font-weight: 800;
@@ -46,7 +46,7 @@
   letter-spacing: 1px;
 }
 
-.register__title {
+.auth__title {
   font-size: 26px;
   margin: 0 0 8px 0;
   color: var(--color-text);
@@ -54,28 +54,28 @@
   text-align: center;
 }
 
-.register__subtitle {
+.auth__subtitle {
   color: var(--color-text-dim);
   font-size: 14px;
   margin: 0 0 32px 0;
   text-align: center;
 }
 
-.register__footer {
+.auth__footer {
   margin-top: 30px;
   text-align: center;
   font-size: 13px;
   color: var(--color-text-dim);
 }
 
-.register__link {
+.auth__link {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
   transition: color var(--transition-fast);
 }
 
-.register__link:hover {
+.auth__link:hover {
   color: var(--color-accent);
 }
 
