@@ -18,10 +18,29 @@ export async function authUser(path: string, authData: LoginRequest | SignUpRequ
 
   return data;
 }
+
 export async function loginUser(authData: LoginRequest) {
   return authUser(API_ROUTES.LOGIN, authData);
 }
 
 export async function signUpUser(authData: SignUpRequest) {
   return authUser(API_ROUTES.SIGN_UP, authData);
+}
+
+export async function getUserByLogin(props: { accessToken: string; login: string }) {
+  const { login, accessToken } = props;
+  const res = await fetch(`${API_ROUTES.USERS}/${login}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    const errorMessage = 'Failed to fetch user';
+    throw new Error(data.message || errorMessage);
+  }
+
+  return data;
 }
