@@ -13,8 +13,7 @@ export async function authUser(path: string, authData: LoginRequest | SignUpRequ
   const data = await res.json();
   if (!res.ok) {
     const errorMessage = 'email' in authData ? 'Failed to sign up' : 'Failed to login';
-    const error = new Error(data.message || errorMessage);
-    throw error;
+    throw new Error(data.message || errorMessage);
   }
 
   return data;

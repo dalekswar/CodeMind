@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 import { signUpUser } from '../../../api';
 import type { ApiError, RegistrationSuccessResponse, SignUpRequest } from '../../../types';
 import { useDispatch } from 'react-redux';
-import { singleToasts } from '../../../utils/toast.util';
+import { singleToast } from '../../../utils/toast.util';
 import { auth } from '../../../redux/reducers';
 import { AuthForm } from '../auth-form';
 
@@ -22,9 +22,9 @@ export const RegistrationForm = () => {
     mutationFn: signUpUser,
     onSuccess: data => {
       dispatch(auth({ login: data.login }));
-      singleToasts(`Регистрация прошла успешно!`, 'success');
+      singleToast(`Регистрация прошла успешно!`, 'success');
     },
-    onError: err => singleToasts(`${err.message || err}`, 'error'),
+    onError: err => singleToast(`${err.message || err}`, 'error'),
   });
 
   function onSubmit(data: RegistrationFormValues) {

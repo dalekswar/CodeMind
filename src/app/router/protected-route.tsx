@@ -7,7 +7,7 @@ type Props = {
   children: ReactNode;
 };
 
-export const ProtectedRoute = ({ children }: Props) => {
+export const AuthorizedOnlyRoute = ({ children }: Props) => {
   const { login } = useUserSelector();
 
   const isAuthorized = !!login;

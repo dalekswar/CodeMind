@@ -1,13 +1,6 @@
 import toast from 'react-hot-toast';
 
-export function singleToasts(message: string, type: 'success' | 'error' = 'success') {
+export function singleToast(message: string, type: 'success' | 'error' = 'success') {
   toast.dismiss();
-  switch (type) {
-    case 'success':
-      toast.success(message);
-      break;
-    case 'error':
-      toast.error(message);
-      break;
-  }
+  toast[type](message);
 }

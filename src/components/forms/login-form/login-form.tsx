@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from './login.schema';
 import { auth } from '../../../redux/reducers';
-import { singleToasts } from '../../../utils/toast.util';
+import { singleToast } from '../../../utils/toast.util';
 import { FormRow } from '../form-row';
 import { AuthForm } from '../auth-form';
 import { useState } from 'react';
@@ -20,9 +20,9 @@ export const LoginForm = () => {
     mutationFn: loginUser,
     onSuccess: data => {
       dispatch(auth({ login: loginInput }));
-      singleToasts(`${data.message}`, 'success');
+      singleToast(`${data.message}`, 'success');
     },
-    onError: err => singleToasts(`${err.message || err}`, 'error'),
+    onError: err => singleToast(`${err.message || err}`, 'error'),
   });
 
   function onSubmit(authData: LoginRequest) {

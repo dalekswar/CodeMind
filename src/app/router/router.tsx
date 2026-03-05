@@ -20,8 +20,8 @@ import { RegisterPage } from '../../pages/auth/register/register-page';
 import { NotFoundPage } from '../../pages/not-found/not-found-page';
 import { LessonPage } from '../../pages/lesson';
 import { Dashboard } from '../../pages/dashboard';
-import { ProtectedRoute } from './protected-route';
 import { PublicOnlyRoute } from './public-only-route';
+import { AuthorizedOnlyRoute } from './protected-route';
 
 export const router = createBrowserRouter([
   {
@@ -40,9 +40,9 @@ export const router = createBrowserRouter([
       {
         path: Paths.DASHBOARD,
         element: (
-          <ProtectedRoute>
+          <AuthorizedOnlyRoute>
             <Dashboard />
-          </ProtectedRoute>
+          </AuthorizedOnlyRoute>
         ),
       },
       {
@@ -61,9 +61,9 @@ export const router = createBrowserRouter([
           {
             path: Paths.MY_COURSES,
             element: (
-              <ProtectedRoute>
+              <AuthorizedOnlyRoute>
                 <CoursesPage />
-              </ProtectedRoute>
+              </AuthorizedOnlyRoute>
             ),
             loader: myCoursesLoader,
           },
@@ -77,18 +77,18 @@ export const router = createBrowserRouter([
       {
         path: Paths.TOPICS,
         element: (
-          <ProtectedRoute>
+          <AuthorizedOnlyRoute>
             <LessonPage />
-          </ProtectedRoute>
+          </AuthorizedOnlyRoute>
         ),
         loader: topicsLoader,
       },
       {
         path: Paths.TOPIC,
         element: (
-          <ProtectedRoute>
+          <AuthorizedOnlyRoute>
             <LessonPage />
-          </ProtectedRoute>
+          </AuthorizedOnlyRoute>
         ),
         loader: topicLoader,
       },
@@ -96,17 +96,17 @@ export const router = createBrowserRouter([
         path: Paths.WIDGET,
 
         element: (
-          <ProtectedRoute>
+          <AuthorizedOnlyRoute>
             <WidgetLayout />
-          </ProtectedRoute>
+          </AuthorizedOnlyRoute>
         ),
       },
       {
         path: Paths.PROFILE,
         element: (
-          <ProtectedRoute>
+          <AuthorizedOnlyRoute>
             <ProfilePage />
-          </ProtectedRoute>
+          </AuthorizedOnlyRoute>
         ),
       },
     ],
