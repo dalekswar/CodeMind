@@ -5,10 +5,10 @@ import { registrationSchema, type RegistrationFormValues } from './registration.
 import { useMutation } from '@tanstack/react-query';
 import { signUpUser } from '../../../api';
 import type { ApiError, RegistrationSuccessResponse, SignUpRequest } from '../../../types';
-import { useDispatch } from 'react-redux';
 import { singleToast } from '../../../utils/toast.util';
-import { auth } from '../../../redux/reducers';
 import { AuthForm } from '../auth-form';
+import { useNavigate } from 'react-router-dom';
+import { Paths } from '../../../app/router';
 
 export const RegistrationForm = () => {
   const {
@@ -16,12 +16,12 @@ export const RegistrationForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<RegistrationFormValues>({ resolver: zodResolver(registrationSchema) });
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const mutation = useMutation<RegistrationSuccessResponse, ApiError, SignUpRequest>({
     mutationKey: ['signUpUser'],
     mutationFn: signUpUser,
-    onSuccess: data => {
-      dispatch(auth({ login: data.login }));
+    onSuccess: () => {
+      navigate(Paths.LOGIN);
       singleToast(`Регистрация прошла успешно!`, 'success');
     },
     onError: err => singleToast(`${err.message || err}`, 'error'),
