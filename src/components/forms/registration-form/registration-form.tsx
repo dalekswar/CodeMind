@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registrationSchema, type RegistrationFormValues } from './registration.schema';
 import { useMutation } from '@tanstack/react-query';
 import { signUpUser } from '../../../api';
-import type { ApiError, RegistrationSuccessResponse, SignUpDto } from '../../../types';
+import type { ApiError, RegistrationSuccessResponse, SignUpRequest } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { singleToasts } from '../../../utils/toast.util';
 import { auth } from '../../../redux/reducers';
@@ -17,7 +17,7 @@ export const RegistrationForm = () => {
     formState: { errors },
   } = useForm<RegistrationFormValues>({ resolver: zodResolver(registrationSchema) });
   const dispatch = useDispatch();
-  const mutation = useMutation<RegistrationSuccessResponse, ApiError, SignUpDto>({
+  const mutation = useMutation<RegistrationSuccessResponse, ApiError, SignUpRequest>({
     mutationKey: ['signUpUser'],
     mutationFn: signUpUser,
     onSuccess: data => {
@@ -28,7 +28,6 @@ export const RegistrationForm = () => {
   });
 
   function onSubmit(data: RegistrationFormValues) {
-    console.log(data);
     mutation.mutate(data);
   }
 

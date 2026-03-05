@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { loginUser } from '../../../api';
-import type { LoginDto } from '../../../types';
+import type { LoginRequest } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,14 +19,13 @@ export const LoginForm = () => {
     mutationKey: ['loginUser'],
     mutationFn: loginUser,
     onSuccess: data => {
-      console.log(data);
       dispatch(auth({ login: loginInput }));
       singleToasts(`${data.message}`, 'success');
     },
     onError: err => singleToasts(`${err.message || err}`, 'error'),
   });
 
-  function onSubmit(authData: LoginDto) {
+  function onSubmit(authData: LoginRequest) {
     mutation.mutate(authData);
   }
 

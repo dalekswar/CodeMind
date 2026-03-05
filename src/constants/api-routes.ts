@@ -5,4 +5,4 @@ export const API_ROUTES = {
   SIGN_UP: `${BASE_URL}/auth/signup`,
   LOGIN: `${BASE_URL}/auth/login`,
   USERS: `${BASE_URL}/users`,
-};
+} as const;

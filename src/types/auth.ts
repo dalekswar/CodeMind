@@ -5,12 +5,10 @@ export type ApiError = {
 };
 export type HealthResponse = string;
 
-export type SignUpDto = {
+export type SignUpRequest = {
   email: string;
   login: string;
   password: string;
-  firstName?: string;
-  lastName?: string;
 };
 
 export type SignUpSuccessResponse = {
@@ -32,7 +30,7 @@ export type UserStateType = {
   login: string;
 };
 
-export type LoginDto = {
+export type LoginRequest = {
   login: string;
   password: string;
 };
@@ -46,14 +44,10 @@ export type UserProfileResponse = {
   id: string;
   email: string;
   login: string;
-  firstName?: string;
-  lastName?: string;
 };
 
-export type UpdateUserDto = {
+export type UpdateUser = {
   email?: string;
   login?: string;
   password?: string;
-  firstName?: string;
-  lastName?: string;
 };
