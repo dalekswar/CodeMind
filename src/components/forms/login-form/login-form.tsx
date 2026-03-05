@@ -1,6 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
-
-import type { LoginRequest } from '../../../types';
+import type { ApiError, LoginRequest } from '../../../types';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -9,54 +7,38 @@ import { auth } from '../../../redux/reducers';
 import { singleToast } from '../../../utils/toast.util';
 import { FormRow } from '../form-row';
 import { AuthForm } from '../auth-form';
-import { useState } from 'react';
-import { loginUser } from '../../../api';
+import { useLoginUserMutation } from '../../../redux/api/usersAPI';
 
 export const LoginForm = () => {
-  const [loginInput, setLoginInput] = useState('');
   const dispatch = useDispatch();
-
-  const mutation = useMutation({
-    mutationKey: ['loginUser'],
-    mutationFn: loginUser,
-    onSuccess: data => {
-      singleToast(`${data.message}`, 'success');
-      dispatch(auth({ accessToken: data.access }));
-    },
-    onError: error => singleToast(error.message, 'error'),
-  });
-
-  function onSubmit(authData: LoginRequest) {
-    mutation.mutate(authData);
-  }
+  const [loginUser, { isLoading }] = useLoginUserMutation();
 
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(loginSchema) });
+  } = useForm<LoginRequest>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const onSubmit = async (authData: LoginRequest) => {
+    try {
+      const data = await loginUser(authData).unwrap();
+      singleToast(data.message, 'success');
+      dispatch(auth({ accessToken: data.access }));
+    } catch (error) {
+      singleToast((error as { data: ApiError })?.data?.message || 'Failed to login', 'error');
+    }
+  };
 
   return (
-    <AuthForm
-      onSubmit={handleSubmit(onSubmit)}
-      isPending={mutation.isPending}
-      submitMessage="Login"
-    >
+    <AuthForm onSubmit={handleSubmit(onSubmit)} isLoading={isLoading} submitMessage="Login">
       <FormRow label="Login" error={errors.login}>
-        <input
-          type="text"
-          id="login"
-          placeholder="SuperUser"
-          {...register('login')}
-          value={loginInput}
-          onChange={e => {
-            setLoginInput(e.target.value);
-          }}
-        />
+        <input type="text" placeholder="SuperUser" {...register('login')} />
       </FormRow>
 
       <FormRow label="Password" error={errors.password}>
-        <input type="password" id="password" placeholder="••••••••" {...register('password')} />
+        <input type="password" placeholder="••••••••" {...register('password')} />
       </FormRow>
     </AuthForm>
   );

@@ -4,16 +4,16 @@ import styles from './auth-form.module.css';
 type Props = {
   children: ReactNode;
   onSubmit: () => void;
-  isPending: boolean;
+  isLoading: boolean;
   submitMessage: string;
 };
-export const AuthForm = ({ children, onSubmit, isPending, submitMessage }: Props) => {
+export const AuthForm = ({ children, onSubmit, isLoading, submitMessage }: Props) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       {children}
 
-      <button type="submit" className={styles.formSubmit} disabled={isPending}>
-        {isPending ? 'Sending Data...' : submitMessage}
+      <button type="submit" className={styles.formSubmit} disabled={isLoading}>
+        {isLoading ? 'Sending Data...' : submitMessage}
       </button>
     </form>
   );
