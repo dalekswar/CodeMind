@@ -1,0 +1,62 @@
+.about {
+  display: grid;
+  gap: 60px;
+  grid-template-columns: 1fr 1fr;
+  place-items: center;
+  margin-bottom: 100px;
+  padding: 60px;
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+
+  background-color: var(--color-card-bg);
+}
+
+.aboutTitle {
+  font-size: clamp(24px, 3vw, 32px);
+  margin-bottom: 20px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.aboutMotivation {
+  color: var(--color-text-dim);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.aboutVisual {
+  max-width: 500px;
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+}
+
+.aboutImage {
+  display: block;
+  border-radius: 24px;
+}
+
+.featuresList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.featuresItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.featuresItem::before {
+  content: '⟶';
+  color: var(--color-accent);
+}
+
+@media (width < 769px) {
+  .about {
+    grid-template-columns: 1fr;
+    padding: 30px;
+  }
+}
