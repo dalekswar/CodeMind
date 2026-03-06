@@ -1,24 +1,17 @@
 import { Link } from 'react-router-dom';
-import type { Direction } from '../../../../types/about-us.types';
+import type { Direction } from '../../../../types/about-us';
 
 import styles from './direction-card.module.css';
 
-type DirectionCardProps = {
-  direction: Direction;
-};
-
-export function DirectionCard({ direction }: DirectionCardProps) {
-  const { id, icon, tag, title, description } = direction;
-  return (
-    <Link className={styles.directionCard} to={`/course/${id}`}>
-      <article>
-        <div className={styles.directionIcon}>{icon}</div>
-        <div className={styles.directionInfo}>
-          <span className={styles.directionTag}>{tag}</span>
-          <h3 className={styles.directionTitle}>{title}</h3>
-          <p className={styles.directionDescription}>{description}</p>
-        </div>
-      </article>
-    </Link>
-  );
-}
+export const DirectionCard = ({ id, icon, tag, title, description }: Direction) => (
+  <Link to={`/course/${id}`}>
+    <article className={styles.directionCard}>
+      <div className={styles.directionIcon}>{icon}</div>
+      <div className={styles.directionInfo}>
+        <span className={styles.directionTag}>{tag}</span>
+        <h3 className={styles.directionTitle}>{title}</h3>
+        <p className={styles.directionDescription}>{description}</p>
+      </div>
+    </article>
+  </Link>
+);

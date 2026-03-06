@@ -1,32 +1,37 @@
-import codeMindImg from './assets/codemind.webp';
+import codeMindAvif from './assets/codemind.avif';
+import codeMindWebp from './assets/codemind.webp';
+import codeMindJpg from './assets/codemind.jpg';
+
+import { ABOUT_TEXTS } from '../../constants/texts/about-texts';
 
 import styles from './about-section.module.css';
 
-export function AboutSection() {
-  return (
-    <section className={styles.about}>
-      <div>
-        <h2 className={styles.aboutTitle}>Платформа для профессионалов</h2>
-        <p className={styles.aboutMotivation}>
-          Мы верим, что обучение должно быть фундаментальным. CodeMind фокусируется на темах,
-          которые формируют инженерное мышление.
-        </p>
-        <ul className={styles.featuresList}>
-          <li className={styles.featuresItem}>100+ часов глубокого контента</li>
-          <li className={styles.featuresItem}>Практические кейсы из реальных проектов</li>
-          <li className={styles.featuresItem}>Подготовка к интервью в BigTech</li>
-        </ul>
-      </div>
-      <div className={styles.aboutVisual}>
+export const AboutSection = () => (
+  <section className={styles.about}>
+    <div>
+      <h2 className={styles.aboutTitle}>{ABOUT_TEXTS.title}</h2>
+      <p className={styles.aboutMotivation}>{ABOUT_TEXTS.motivation}</p>
+      <ul className={styles.featuresList}>
+        {ABOUT_TEXTS.features.map(feature => (
+          <li key={feature} className={styles.featuresItem}>
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div className={styles.aboutVisual}>
+      <picture>
+        <source srcSet={codeMindAvif} type="image/avif" />
+        <source srcSet={codeMindWebp} type="image/webp" />
         <img
           className={styles.aboutImage}
-          src={codeMindImg}
+          src={codeMindJpg}
           alt="CodeMind learning platform interface"
           loading="lazy"
           width="500"
           height="333"
         />
-      </div>
-    </section>
-  );
-}
+      </picture>
+    </div>
+  </section>
+);

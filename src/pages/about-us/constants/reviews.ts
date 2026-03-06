@@ -1,4 +1,4 @@
-import type { Review } from '../types/about-us.types';
+import type { Review } from '../types/about-us';
 
 export const reviews: Review[] = [
   {

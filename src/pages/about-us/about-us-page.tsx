@@ -3,13 +3,11 @@ import { DirectionsSection } from './components/directions-section';
 import { AboutSection } from './components/about-section';
 import { ReviewsSection } from './components/reviews-section';
 
-export function AboutUsPage() {
-  return (
-    <div className="container">
-      <HeroSection />
-      <DirectionsSection />
-      <AboutSection />
-      <ReviewsSection />
-    </div>
-  );
-}
+export const AboutUsPage = () => (
+  <div className="container">
+    <HeroSection />
+    <DirectionsSection />
+    <AboutSection />
+    <ReviewsSection />
+  </div>
+);

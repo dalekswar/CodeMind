@@ -1,4 +1,4 @@
-import type { Direction } from '../types/about-us.types';
+import type { Direction } from '../types/about-us';
 
 export const directions: Direction[] = [
   {
