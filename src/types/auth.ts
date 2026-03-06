@@ -1,25 +1,25 @@
-export type ApiError = {
+export interface ApiError {
   statusCode: number;
   message: string;
   error?: string;
-};
+}
 export type HealthResponse = string;
-export type accessToken = {
+export interface accessToken {
   accessToken: string | null;
-};
+}
 
-export type SignUpRequest = {
+export interface SignUpRequest {
   email: string;
   login: string;
   password: string;
-};
+}
 
-export type SignUpSuccessResponse = {
+export interface SignUpSuccessResponse {
   statusText: string;
   message: string;
-};
+}
 
-export type RegistrationSuccessResponse = {
+export interface RegistrationSuccessResponse {
   id: number;
   email: string;
   login: string;
@@ -27,31 +27,31 @@ export type RegistrationSuccessResponse = {
   lastName: string | null;
   createdAt: string;
   updatedAt: string;
-};
-export type UserStateType = {
+}
+export interface UserStateType {
   email: string;
   login: string;
-};
+}
 
-export type LoginRequest = {
+export interface LoginRequest {
   login: string;
   password: string;
-};
+}
 
-export type LoginSuccessResponse = {
+export interface LoginSuccessResponse {
   statusText: string;
   message: string;
   access: string;
-};
+}
 
-export type UserProfileResponse = {
+export interface UserProfileResponse {
   id: string;
   email: string;
   login: string;
-};
+}
 
-export type UpdateUser = {
+export interface UpdateUser {
   email?: string;
   login?: string;
   password?: string;
-};
+}

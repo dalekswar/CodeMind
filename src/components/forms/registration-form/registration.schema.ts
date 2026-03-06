@@ -18,7 +18,7 @@ export const registrationSchema = z
       ),
     passwordConfirm: z.string(),
   })
-  .refine(data => data.password === data.passwordConfirm, {
+  .refine((data) => data.password === data.passwordConfirm, {
     message: 'Passwords must match',
     path: ['passwordConfirm'],
   });

@@ -7,7 +7,7 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4000/',
-    prepareHeaders: headers => {
+    prepareHeaders: (headers) => {
       const token = localStorage.getItem('accessToken');
 
       if (token) {
@@ -17,7 +17,7 @@ export const usersApi = createApi({
       return headers;
     },
   }),
-  endpoints: builder => ({
+  endpoints: (builder) => ({
     getUserByLogin: builder.query({
       query: (login: string) => ({
         url: `users/${login}`,

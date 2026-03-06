@@ -3,9 +3,9 @@ import { Navigate } from 'react-router-dom';
 import { useUserSelector } from '../../redux/selectors';
 import { Paths } from './paths';
 
-type Props = {
+interface Props {
   children: ReactNode;
-};
+}
 
 export const AuthorizedOnlyRoute = ({ children }: Props) => {
   const { accessToken } = useUserSelector();

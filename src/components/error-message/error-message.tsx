@@ -1,6 +1,6 @@
-type Props = {
+interface Props {
   error: Error;
-};
+}
 
 export const ErrorMessage = (props: Props) => {
   return (

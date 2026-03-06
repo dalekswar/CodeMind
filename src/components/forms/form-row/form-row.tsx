@@ -2,11 +2,11 @@ import type { ReactElement } from 'react';
 import type { FieldError } from 'react-hook-form';
 import styles from './form-row.module.css';
 
-type Props = {
+interface Props {
   label?: string;
   error?: FieldError;
   children: ReactElement<{ id?: string }>;
-};
+}
 
 export const FormRow = ({ label, error, children }: Props) => {
   return (
