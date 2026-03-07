@@ -1,0 +1,47 @@
+.directionCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+  padding: 32px;
+  border: 1px solid var(--color-line);
+  border-radius: 24px;
+
+  background-color: var(--color-card-bg);
+
+  transition: 0.3s;
+}
+
+.directionIcon {
+  font-size: 32px;
+}
+
+.directionTag {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.directionTitle {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+
+.directionDescription {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-dim);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .directionCard:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-card-bg-hover);
+    transform: translateY(-4px);
+  }
+}
