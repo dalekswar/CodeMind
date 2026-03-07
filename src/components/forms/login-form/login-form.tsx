@@ -25,7 +25,7 @@ export const LoginForm = () => {
     try {
       const data = await loginUser(authData).unwrap();
       singleToast(data.message, 'success');
-      dispatch(auth({ accessToken: data.access }));
+      dispatch(auth({ accessToken: data.accessToken }));
     } catch (error) {
       singleToast((error as { data: ApiError })?.data?.message || 'Failed to login', 'error');
     }

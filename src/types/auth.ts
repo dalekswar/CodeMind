@@ -1,26 +1,24 @@
+interface BaseUserData {
+  login: string;
+  email: string;
+  password: string;
+}
 export interface ApiError {
   statusCode: number;
   message: string;
   error?: string;
 }
 
-export type HealthResponse = string;
-
-export interface AccessToken {
+export type UserPersonalData = Omit<BaseUserData, 'password'> & {
   accessToken: string | null;
-}
+  firstName: string;
+  lastName: string;
+};
 
-export interface LoginData {
-  login: string;
-}
+export type LoginData = Pick<BaseUserData, 'login'>;
+export type EmailData = Pick<BaseUserData, 'email'>;
 
-export interface EmailData {
-  email: string;
-}
-
-export interface PasswordData {
-  password: string;
-}
+export type PasswordData = Pick<BaseUserData, 'password'>;
 
 export type AuthData = LoginData & PasswordData;
 

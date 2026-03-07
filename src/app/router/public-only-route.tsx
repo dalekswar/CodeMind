@@ -1,15 +1,15 @@
 import { Navigate } from 'react-router-dom';
-import { useUserSelector } from '../../redux/selectors';
+
 import { Paths } from './paths';
 import type { ReactNode } from 'react';
+import { useIsAuth } from '../../redux/hooks/useIsAuth';
 interface Props {
   children: ReactNode;
 }
 export const AlreadyLoggedInRoute = ({ children }: Props) => {
-  const { accessToken } = useUserSelector();
-  const isAuthorized = !!accessToken;
+  const isAuth = useIsAuth();
 
-  if (isAuthorized) {
+  if (isAuth) {
     return <Navigate to={Paths.ROOT} replace />;
   }
 
