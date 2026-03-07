@@ -1,3 +1,3 @@
 import { useAppSelector } from '../hooks';
 
-export const useIsAuth = () => useAppSelector((state) => state.user.accessToken);
+export const useIsAuthSelector = () => Boolean(useAppSelector((state) => state.user.accessToken));

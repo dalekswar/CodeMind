@@ -11,6 +11,7 @@ const initialState: AccessToken = accessTokenFromStorage
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
+
   reducers: {
     auth(state, action: PayloadAction<AccessToken>) {
       state.accessToken = action.payload.accessToken;
