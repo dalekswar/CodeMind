@@ -1,0 +1,80 @@
+.header {
+  background-color: var(--color-bg);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--color-line);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 100;
+}
+
+.nav {
+  width: 100%;
+  max-width: 1100px;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 12px;
+}
+
+.logoItem {
+  margin-right: 20px;
+}
+
+.logo {
+  color: var(--color-accent);
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.link {
+  font-family: var(--font-primary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.aboutLink,
+.coursesLink {
+  color: var(--color-text-dim);
+  background-color: var(--color-input-bg);
+  border-color: var(--color-line);
+}
+
+.active {
+  border-color: var(--color-accent);
+}
+
+.joinItem {
+  margin-left: auto;
+}
+
+.joinLink {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.link:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
