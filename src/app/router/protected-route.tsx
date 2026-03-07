@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 
 import { Paths } from './paths';
-import { useIsAuth } from '../../redux/selectors';
+import { useIsAuth } from '../../redux/hooks/useIsAuth';
 
 interface Props {
   children: ReactNode;

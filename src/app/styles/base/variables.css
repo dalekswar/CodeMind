@@ -3,6 +3,7 @@
   --color-bg: #0b0e14;
   --color-navbar-bg: #121720;
   --color-card-bg: rgba(255, 255, 255, 0.02);
+  --color-card-bg-hover: rgba(255, 255, 255, 0.04);
   --color-input-bg: rgba(0, 0, 0, 0.2);
 
   /* ===== TEXT ===== */
@@ -32,6 +33,9 @@
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ===== Gradients ===== */
+  --color-hero-bg: radial-gradient(circle at top, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
 
   /* ===== FONTS ===== */
   --font-primary: 'Plus Jakarta Sans', sans-serif;
