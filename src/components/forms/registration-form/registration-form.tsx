@@ -16,10 +16,9 @@ export const RegistrationForm = () => {
   const [signUpUser, { isLoading }] = useSignUpUserMutation();
   const navigate = useNavigate();
 
-  const onSubmit = (authData: RegistrationFormValues) => {
-    signUpUser(authData)
-      .unwrap()
-      .then(() => navigate(Paths.LOGIN));
+  const onSubmit = async (authData: RegistrationFormValues) => {
+    await signUpUser(authData);
+    navigate(Paths.LOGIN);
   };
 
   return (

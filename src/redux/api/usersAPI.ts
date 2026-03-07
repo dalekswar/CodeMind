@@ -32,8 +32,9 @@ export const usersApi = createApi({
         method: 'POST',
         body: authData,
       }),
-      onQueryStarted: async () => {
+      onQueryStarted: async (_, { queryFulfilled }) => {
         try {
+          await queryFulfilled;
           singleToast('Successfully signed up!', 'success');
         } catch (apiError) {
           const { error } = apiError as { error: { data: ApiError } };
