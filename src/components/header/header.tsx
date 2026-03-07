@@ -1,39 +1,37 @@
-import { NavLink } from 'react-router-dom';
-import { Paths } from '../../app/router/paths';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './header.module.css';
+import { Paths } from '../../app/router';
+import { HeaderBreadcrumbs } from '../breadcrumbs';
 
 export const Header = () => {
+  const { pathname } = useLocation();
+
+  const isBreadcrumbsActive = pathname.startsWith(Paths.COURSES);
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <ul className={styles.list}>
-          <li className={styles.logoItem}>
+          <li className={styles.itemLogin}>
             <NavLink to={Paths.ROOT} className={styles.logo}>
               CodeMind
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={Paths.ABOUT_US}
-              className={({ isActive }) =>
-                `${styles.link} ${styles.aboutLink} ${isActive ? styles.active : ''}`
-              }
-            >
+
+          <li
+            className={`${styles.item} ${styles.aboutLink} ${pathname === Paths.ABOUT_US ? styles.active : ''}`}
+          >
+            <NavLink to={Paths.ABOUT_US} className={styles.link}>
               About Us
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to={Paths.COURSES}
-              className={({ isActive }) =>
-                `${styles.link} ${styles.coursesLink} ${isActive ? styles.active : ''}`
-              }
-            >
-              Courses
-            </NavLink>
+
+          <li className={`${styles.item} ${isBreadcrumbsActive ? styles.active : ''}`}>
+            <HeaderBreadcrumbs />
           </li>
-          <li className={styles.joinItem}>
-            <NavLink to={Paths.REGISTER} className={`${styles.link} ${styles.joinLink} `}>
+
+          <li className={`${styles.item} ${styles.itemJoin}`}>
+            <NavLink to={Paths.REGISTER} className={`${styles.link}`}>
               Join Now
             </NavLink>
           </li>
