@@ -1,12 +1,11 @@
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './breadcrumbs.module.css';
 import { createCrumbsPath } from '../../utils/crumbs-path';
 import { Fragment } from 'react/jsx-runtime';
 
 export const HeaderBreadcrumbs = () => {
   const { pathname } = useLocation();
-  const params = useParams();
-  const crumbs = createCrumbsPath(params, pathname);
+  const crumbs = createCrumbsPath(pathname);
   console.log(crumbs);
 
   return (

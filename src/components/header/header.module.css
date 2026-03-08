@@ -35,11 +35,6 @@
   margin-right: 6px;
 }
 
-.itemAbout {
-  color: var(--color-text-dim);
-  background-color: var(--color-input-bg);
-  border: 1px solid var(--color-line);
-}
 .itemJoin {
   color: var(--color-text);
   background-color: rgba(56, 189, 248, 0.05);
@@ -60,6 +55,9 @@
   display: flex;
   align-items: center;
   transition: all 0.3s;
+  color: var(--color-text-dim);
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-line);
 }
 
 .link {
@@ -73,6 +71,15 @@
   font-weight: 600;
   border-radius: 10px;
   transition: all 0.2s ease;
+}
+
+.itemLogin {
+  background-color: transparent;
+  border: none;
+}
+.itemLogin:hover {
+  background-color: transparent;
+  border: none;
 }
 .active {
   border: 1px solid var(--color-accent);

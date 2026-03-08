@@ -1,11 +1,3 @@
-import { Paths } from '../app/router';
-
-type PathParams = Partial<{
-  courseId: string;
-  topicId: string;
-  widgetType: string;
-  widgetId: string;
-}>;
 export const PATH_PARAMS = {
   COURSE_ID: ':courseId',
   TOPIC_ID: ':topicId',
@@ -17,36 +9,27 @@ type Crumb = {
   name: string;
   path: string;
 };
-export const createCrumbsPath = (params: PathParams, pathname: string): Crumb[] => {
+
+export const createCrumbsPath = (pathname: string): Crumb[] => {
+  const pathnameParams = pathname.split('/').filter(Boolean);
+
   const crumbs: Crumb[] = [];
 
-  crumbs.push({ name: 'Courses', path: Paths.COURSES });
-  const pathSegments = pathname.split('/').filter(Boolean);
-  const hasTopics = pathSegments.includes('topics');
-
-  if (params.courseId) {
-    const coursePath = [Paths.COURSES, params.courseId].join('/');
-    crumbs.push({ name: params.courseId, path: coursePath });
-  }
-  if (hasTopics || params.topicId) {
-    const topicsPath = [Paths.COURSES, params.courseId, 'topics'].join('/');
-    crumbs.push({ name: 'topics', path: topicsPath });
-  }
-  if (params.topicId) {
-    const topicPath = [Paths.COURSES, params.courseId, params.topicId].join('/');
-    crumbs.push({ name: params.topicId, path: topicPath });
-  }
-
-  if (params.widgetType) {
-    const widgetPath = [
-      Paths.COURSES,
-      params.courseId,
-      params.topicId,
-      params.widgetType,
-      params.widgetId || '',
-    ].join('/');
-    crumbs.push({ name: params.widgetType, path: widgetPath });
-  }
+  pathnameParams
+    .filter((value) => value !== 'my' && value !== 'all')
+    .forEach((param, index) => {
+      const path = '/' + pathnameParams.slice(0, index + 1).join('/');
+      if (index === 2 && param !== 'topics') {
+        crumbs.push({
+          name: 'topics',
+          path: '/' + [...pathnameParams.slice(0, 2), 'topics'].join('/'),
+        });
+      }
+      crumbs.push({
+        name: param,
+        path,
+      });
+    });
 
   return crumbs;
 };
