@@ -11,7 +11,6 @@ export const Header = () => {
   const { data, isFetching } = useGetUserByLoginQuery(undefined, {
     skip: !isAuth,
   });
-  console.log(data);
   const isBreadcrumbsActive = pathname.startsWith(Paths.COURSES);
   return (
     <header className={styles.header}>
@@ -47,18 +46,21 @@ export const Header = () => {
             <HeaderBreadcrumbs />
           </li>
 
-          <li className={`${styles.item} ${styles.itemJoin}`}>
+          <li className={`${styles.item} ${styles.itemAuth}`}>
             {!isFetching && !isAuth && (
-              <NavLink to={Paths.REGISTER} className={`${styles.link}`}>
+              <NavLink to={Paths.REGISTER} className={`${styles.link} ${styles.linkJoin}`}>
                 Join Now
               </NavLink>
             )}
             {data && (
               <NavLink
                 to={Paths.PROFILE}
-                className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
+                className={({ isActive }) =>
+                  `${styles.link} ${styles.linkLogin} ${isActive ? styles.active : ''}`
+                }
               >
-                {data.login}
+                <span>{data.login}</span>
+                <div className={styles.userLogo}>{data.login[0]}</div>
               </NavLink>
             )}
           </li>

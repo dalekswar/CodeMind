@@ -40,7 +40,6 @@ export const usersApi = createApi({
       onQueryStarted: async (_, { queryFulfilled, dispatch }) => {
         try {
           const { data } = await queryFulfilled;
-          console.log(data);
           dispatch(auth({ accessToken: data.accessToken }));
           singleToast(data.message, 'success');
         } catch (apiError) {

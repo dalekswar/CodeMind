@@ -11,8 +11,6 @@ const baseQuery = fetchBaseQuery({
   prepareHeaders: (headers) => {
     const token = localStorage.getItem('accessToken');
     if (token) {
-      console.log(JSON.parse(token).accessToken);
-      console.log('token', `Bearer ${JSON.parse(token).accessToken}`);
       headers.set('Authorization', `Bearer ${JSON.parse(token).accessToken}`);
     }
 
@@ -26,7 +24,6 @@ export const baseQueryWithAuth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   const result = await baseQuery(args, api, extraOptions);
-  console.log('result', result);
   if (result.error) {
     api.dispatch(logout());
   }
