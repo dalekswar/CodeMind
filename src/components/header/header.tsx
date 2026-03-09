@@ -11,54 +11,49 @@ export const Header = () => {
   const { data, isFetching } = useGetUserByLoginQuery(undefined, {
     skip: !isAuth,
   });
-  const isBreadcrumbsActive = pathname.startsWith(Paths.COURSES);
+
+  const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `${styles.link} ${isActive ? styles.active : ''}`;
+
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
         <ul className={styles.list}>
-          <li className={`${styles.itemLogo}`}>
+          <li className={styles.itemLogo}>
             <NavLink to={Paths.ROOT} className={styles.logo}>
               CodeMind
             </NavLink>
           </li>
 
-          <li
-            className={`${styles.item} ${styles.itemAbout} ${pathname === Paths.ABOUT_US ? styles.active : ''}`}
-          >
-            <NavLink
-              to={Paths.ABOUT_US}
-              className={({ isActive }) => `${styles.link} ${isActive ? styles.active : ''}`}
-            >
+          <li>
+            <NavLink to={Paths.ABOUT_US} className={getNavLinkClass}>
               About Us
             </NavLink>
           </li>
 
           {isAuth && (
-            <li
-              className={`${styles.item} ${styles.itemDashboard}  ${pathname === Paths.DASHBOARD ? styles.active : ''}`}
-            >
-              <NavLink to={Paths.DASHBOARD} className={styles.link}>
+            <li>
+              <NavLink to={Paths.DASHBOARD} className={getNavLinkClass}>
                 Dashboard
               </NavLink>
             </li>
           )}
-          <li className={`${styles.item} ${isBreadcrumbsActive ? styles.active : ''}`}>
+
+          <li
+            className={`${styles.itemCrumbs} ${pathname.startsWith(Paths.COURSES) ? styles.active : ''}`}
+          >
             <HeaderBreadcrumbs />
           </li>
 
-          <li className={`${styles.item} ${styles.itemAuth}`}>
+          <li className={styles.itemAuth}>
             {!isFetching && !isAuth && (
               <NavLink to={Paths.REGISTER} className={`${styles.link} ${styles.linkJoin}`}>
                 Join Now
               </NavLink>
             )}
+
             {data && (
-              <NavLink
-                to={Paths.PROFILE}
-                className={({ isActive }) =>
-                  `${styles.link} ${styles.linkLogin} ${isActive ? styles.active : ''}`
-                }
-              >
+              <NavLink to={Paths.PROFILE} className={getNavLinkClass}>
                 <span>{data.login}</span>
                 <div className={styles.userLogo}>{data.login[0]}</div>
               </NavLink>
