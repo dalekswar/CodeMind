@@ -1,3 +1,5 @@
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
+
 export const Paths = {
   ROOT: '/',
   LOGIN: '/login',
@@ -17,5 +19,3 @@ export const Paths = {
   NOT_FOUND: '/not-found',
   OTHER_PATHS: '*',
 } as const;
-
-export const BASE_URL = import.meta.env.VITE_BASE_URL;

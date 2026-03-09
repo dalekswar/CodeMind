@@ -9,7 +9,7 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   baseQuery: baseQueryWithAuth,
   endpoints: (builder) => ({
-    getUserByLogin: builder.query({
+    getCurrentUser: builder.query({
       query: () => ({
         url: `users/me`,
       }),
@@ -51,4 +51,4 @@ export const usersApi = createApi({
   }),
 });
 
-export const { useGetUserByLoginQuery, useSignUpUserMutation, useLoginUserMutation } = usersApi;
+export const { useGetCurrentUserQuery, useSignUpUserMutation, useLoginUserMutation } = usersApi;

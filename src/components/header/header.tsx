@@ -3,16 +3,17 @@ import styles from './header.module.css';
 import { HeaderBreadcrumbs } from '../breadcrumbs';
 import { useIsAuth } from '../../redux/hooks/useIsAuth';
 import { Paths } from '../../constants/paths';
-import { useGetUserByLoginQuery } from '../../redux/api/usersAPI';
+import { useGetCurrentUserQuery } from '../../redux/api/usersAPI';
+
 import classNames from 'classnames';
+import { getLinks } from '../../utils/get-links';
 
 export const Header = () => {
   const { pathname } = useLocation();
   const isAuth = useIsAuth();
-  const { data, isFetching } = useGetUserByLoginQuery(undefined, {
+  const { data, isFetching } = useGetCurrentUserQuery(undefined, {
     skip: !isAuth,
   });
-  console.log(data);
   const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
     classNames(styles.link, { [styles.active]: isActive });
 
@@ -20,25 +21,21 @@ export const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <ul className={styles.list}>
-          <li className={styles.itemLogo}>
-            <NavLink to={Paths.ROOT} className={styles.logo}>
-              CodeMind
-            </NavLink>
-          </li>
-
-          <li>
-            <NavLink to={Paths.ABOUT_US} className={getNavLinkClass}>
-              About Us
-            </NavLink>
-          </li>
-
-          {isAuth && (
-            <li>
-              <NavLink to={Paths.DASHBOARD} className={getNavLinkClass}>
-                Dashboard
-              </NavLink>
-            </li>
-          )}
+          {getLinks(isAuth).map((linkProps) => {
+            return (
+              <li
+                className={classNames({ [styles.itemLogo]: linkProps.isLogo })}
+                key={linkProps.key}
+              >
+                <NavLink
+                  to={linkProps.link}
+                  className={linkProps.isLogo ? styles.logo : getNavLinkClass}
+                >
+                  {linkProps.text}
+                </NavLink>
+              </li>
+            );
+          })}
 
           <li
             className={classNames(styles.itemCrumbs, {
