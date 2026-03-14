@@ -3,6 +3,17 @@ type BaseUserData = {
   email: string;
   password: string;
 };
+
+export type User = {
+  id: number | string;
+  login: string;
+  email: string;
+  firstName?: string | null;
+  lastName?: string | null;
+  createdAt?: string;
+  updatedAt?: string;
+};
+
 export type ApiError = {
   statusCode: number;
   message: string;
@@ -15,16 +26,9 @@ export type UserPersonalData = Omit<BaseUserData, 'password'> & {
   lastName: string;
 };
 
-export type LoginData = Pick<BaseUserData, 'login'>;
-export type EmailData = Pick<BaseUserData, 'email'>;
+export type AuthData = Pick<BaseUserData, 'login' | 'password'>;
 
-export type PasswordData = Pick<BaseUserData, 'password'>;
-
-export type AuthData = LoginData & PasswordData;
-
-export type RegistrationData = LoginData & EmailData & PasswordData;
-
-export type SignUpRequest = RegistrationData;
+export type RegistrationData = BaseUserData & Pick<User, 'firstName' | 'lastName'>;
 
 export type LoginRequest = AuthData;
 
@@ -34,17 +38,7 @@ export type AuthMessageResponse = {
 };
 
 export type LoginSuccessResponse = AuthMessageResponse & {
-  access: string;
-};
-
-export type User = {
-  id: number | string;
-  login: string;
-  email: string;
-  firstName?: string | null;
-  lastName?: string | null;
-  createdAt?: string;
-  updatedAt?: string;
+  accessToken: string;
 };
 
 export type UserStateType = Pick<User, 'email' | 'login'>;

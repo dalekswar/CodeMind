@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSignUpUserMutation } from '../../../redux/api/usersAPI';
 import { Paths } from '../../../constants';
 import styles from './register-form.module.css';
+
 export const RegistrationForm = () => {
   const {
     register,
@@ -17,8 +18,14 @@ export const RegistrationForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (authData: RegistrationFormValues) => {
-    await signUpUser(authData);
-    navigate(Paths.LOGIN);
+    const { passwordConfirm, ...restData } = authData;
+    try {
+      await signUpUser(restData).unwrap();
+      navigate(Paths.LOGIN);
+    } catch (err) {
+      // no navigation in case of error
+      console.log(err);
+    }
   };
 
   return (

@@ -47,6 +47,7 @@ export default tseslint.config(
       'prettier/prettier': ['error', { endOfLine: 'auto' }],
       '@typescript-eslint/no-empty-interface': 'error',
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/no-unused-vars': ['warn'],
     },
     settings: {
       react: {
