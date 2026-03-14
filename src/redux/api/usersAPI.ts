@@ -1,6 +1,12 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import type { ApiError, LoginRequest, SignUpRequest } from '../../types';
+import type {
+  ApiError,
+  LoginRequest,
+  LoginSuccessResponse,
+  RegistrationData,
+  User,
+} from '../../types';
 import { singleToast } from '../../utils/toast.util';
 import { auth } from '../reducers';
 import { baseQueryWithAuth } from './base-query';
@@ -11,12 +17,11 @@ export const usersApi = createApi({
   endpoints: (builder) => ({
     getCurrentUser: builder.query({
       query: () => ({
-        url: `users/me`,
+        url: 'users/me',
       }),
     }),
-
-    signUpUser: builder.mutation({
-      query: (authData: SignUpRequest) => ({
+    signUpUser: builder.mutation<User, RegistrationData>({
+      query: (authData) => ({
         url: 'auth/signup',
         method: 'POST',
         body: authData,
@@ -31,8 +36,8 @@ export const usersApi = createApi({
         }
       },
     }),
-    loginUser: builder.mutation({
-      query: (authData: LoginRequest) => ({
+    loginUser: builder.mutation<LoginSuccessResponse, LoginRequest>({
+      query: (authData) => ({
         url: 'auth/login',
         method: 'POST',
         body: authData,
