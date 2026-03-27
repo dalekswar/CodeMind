@@ -18,6 +18,7 @@ import { LoginPage } from '../../pages/auth/login/login-page';
 import { RegisterPage } from '../../pages/auth/register/register-page';
 import { NotFoundPage } from '../../pages/not-found/not-found-page';
 import { LessonPage } from '../../pages/lesson';
+import { CourseInfoPage } from '../../pages/course-info/course-info-page';
 import { Dashboard } from '../../pages/dashboard';
 import { AlreadyLoggedInRoute } from './public-only-route';
 import { AuthorizedOnlyRoute } from './protected-route';
@@ -71,7 +72,7 @@ export const router = createBrowserRouter([
       },
       {
         path: Paths.COURSE_INFO,
-        element: <LessonPage />,
+        element: <CourseInfoPage />,
         loader: courseInfoLoader,
       },
       {
