@@ -1,0 +1,14 @@
+.coursePage {
+  padding-block: 80px;
+}
+
+.wrapper {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr 340px;
+
+  @media (width < 1000px) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

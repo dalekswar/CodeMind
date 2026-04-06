@@ -8,8 +8,9 @@
   font-size: 16px;
   font-weight: 800;
   color: var(--color-text-inverse);
+  text-align: center;
 
-  transition: 0.2s;
+  transition: var(--transition-normal);
 }
 
 @media (hover: hover) and (pointer: fine) {
