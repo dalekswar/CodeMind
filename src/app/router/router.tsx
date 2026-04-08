@@ -2,8 +2,8 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ErrorPage } from '../../pages/error/error-page';
 import { AppLayout } from '../layouts/app-layout/app-layout';
 import { AboutUsPage } from '../../pages/about-us';
-import { CoursesLayout } from '../layouts/courses-layout/courses-layout';
-import CoursesPage from '../../pages/courses/courses-page';
+import { CoursesLayout } from '../layouts/courses-layout';
+import { CoursesPage } from '../../pages/courses';
 import {
   allCoursesLoader,
   courseInfoLoader,
@@ -19,6 +19,7 @@ import { RegisterPage } from '../../pages/auth/register/register-page';
 import { NotFoundPage } from '../../pages/not-found/not-found-page';
 import { LessonPage } from '../../pages/lesson';
 import { TopicsPage } from '../../pages/topics';
+import { CourseInfoPage } from '../../pages/course-info';
 import { Dashboard } from '../../pages/dashboard';
 import { AlreadyLoggedInRoute } from './public-only-route';
 import { AuthorizedOnlyRoute } from './protected-route';
@@ -72,7 +73,7 @@ export const router = createBrowserRouter([
       },
       {
         path: Paths.COURSE_INFO,
-        element: <LessonPage />,
+        element: <CourseInfoPage />,
         loader: courseInfoLoader,
       },
       {

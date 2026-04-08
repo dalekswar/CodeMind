@@ -1,0 +1,47 @@
+.sidebarCard {
+  align-self: start;
+  max-width: 340px;
+  padding: 30px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+
+  background-color: var(--color-sidebar-bg);
+}
+
+.sidebarTitle {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--color-accent);
+
+  font-size: 16px;
+  text-align: center;
+}
+
+.paramRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.paramLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--color-text-dim);
+  text-transform: uppercase;
+}
+
+.paramValue {
+  font-weight: 800;
+}
+
+.sidebarBtn {
+  width: 100%;
+  padding: 22px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sidebarBtn:hover {
+    box-shadow: var(--shadow-btn);
+  }
+}

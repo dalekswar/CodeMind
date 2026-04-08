@@ -1,0 +1,33 @@
+.coursePageTitle {
+  position: relative;
+
+  margin-bottom: 20px;
+  padding-left: 25px;
+
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 800;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 4px;
+    height: 48px;
+    border-radius: 10px;
+
+    background-color: var(--color-accent);
+    box-shadow: var(--shadow-line);
+  }
+}
+
+.courseIntroduction {
+  max-width: 650px;
+  margin-bottom: 40px;
+
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--color-text-dim);
+}

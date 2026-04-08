@@ -1,0 +1,67 @@
+.course {
+  padding: 48px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xl);
+
+  background-color: var(--color-course-bg);
+
+  @media (width < 600px) {
+    padding-inline: 20px;
+  }
+}
+
+.courseAboutTitle {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.courseDescription {
+  margin-bottom: 40px;
+  line-height: 1.4;
+  color: var(--color-text-dim);
+}
+
+.courseTopicsList {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.courseTopic {
+  cursor: pointer;
+
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+
+  line-height: 1.5;
+  font-weight: 600;
+  color: var(--color-text);
+
+  background-color: var(--color-topic-bg);
+
+  transition: var(--transition-normal);
+
+  &::before {
+    content: '⟶';
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--color-accent);
+  }
+}
+
+.activeTopic {
+  border-color: var(--color-accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .courseTopic:hover {
+    border-color: var(--color-accent);
+    background-color: var(--color-topic-active-bg);
+  }
+}
